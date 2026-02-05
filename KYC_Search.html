@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LC Applicant Search</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .search-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        .header h2 {
+            color: #1a3d7c;
+            margin-bottom: 5px;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .search-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .search-form {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #1a3d7c;
+            font-size: 14px;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: #1a3d7c;
+            box-shadow: 0 0 0 2px rgba(26, 61, 124, 0.2);
+        }
+        
+        .full-width {
+            grid-column: 1 / -1;
+        }
+        
+        .data-source {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .data-source a {
+            color: #1a3d7c;
+            text-decoration: none;
+        }
+        
+        .data-source a:hover {
+            text-decoration: underline;
+        }
+        
+        .search-btn {
+            background-color: #1a3d7c;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+            width: 100%;
+        }
+        
+        .search-btn:hover {
+            background-color: #153265;
+        }
+        
+        .footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            padding-top: 15px;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        .note {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 20px;
+            font-size: 13px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <div class="header">
+            <h2>LC Applicant Search Panel</h2>
+            <p>Search for LC applicants by name, IRC number, or status</p>
+        </div>
+        
+        <form class="search-form">
+            <div class="form-group full-width">
+                <label for="applicant-name">Name of LC Applicant</label>
+                <input type="text" id="applicant-name" placeholder="Enter applicant name">
+            </div>
+            
+            <div class="form-group">
+                <label for="irc-number">Applicant IRC Number</label>
+                <input type="text" id="irc-number" placeholder="Enter IRC number">
+                <div class="data-source">Data source: <a href="https://drive.google.com/file/d/1xZpWegR0HPYAkvzHY_sPoQgZLba02Hoa/view?usp=sharing" target="_blank">IRC Database</a></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="status">Status</label>
+                <select id="status">
+                    <option value="">Select Status</option>
+                    <option value="active">Active</option>
+                    <option value="pending">Pending</option>
+                    <option value="inactive">Inactive</option>
+                    <option value="suspended">Suspended</option>
+                </select>
+                <div class="data-source">Data source: <a href="https://olm.ccie.gov.bd/" target="_blank">Office of the Chief Controller of Imports & Exports</a></div>
+            </div>
+            
+            <div class="form-group full-width">
+                <button type="button" class="search-btn">Search Applicant</button>
+            </div>
+        </form>
+        
+        <div class="note">
+            <p><strong>Note:</strong> This search panel is for inquiry purposes only. Actual search results would be displayed after the recipient initiates a search based on the provided criteria.</p>
+        </div>
+        
+        <div class="footer">
+            <p>© 2023 Trade Finance Solutions BD. This search interface is provided for authorized use only.</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchBtn = document.querySelector('.search-btn');
+            
+            searchBtn.addEventListener('click', function() {
+                const applicantName = document.getElementById('applicant-name').value;
+                const ircNumber = document.getElementById('irc-number').value;
+                const status = document.getElementById('status').value;
+                
+                // In a real implementation, this would connect to backend services
+                // For demonstration, we'll just show an alert
+                alert(`Search initiated with:\nName: ${applicantName || 'Not specified'}\nIRC: ${ircNumber || 'Not specified'}\nStatus: ${status || 'Not specified'}\n\nResults would be displayed based on actual data sources.`);
+            });
+        });
+    </script>
+</body>
+</html>
